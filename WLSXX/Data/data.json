@@ -1,0 +1,29 @@
+﻿{
+    "wrestlers": [
+        {
+            "id": "b5c49f51-8872-46ad-b660-15795296c065",
+            "name": "Andy Jones",
+            "nickname": "Andy",
+            "gender": "1",
+            "attributes": {
+                "strength": "60",
+                "intelligence": "85",
+                "toughness": "72",
+                "agility": "70"
+            }
+        },
+        {
+            "id": "a5823f8c-7f8d-42b5-80a2-a5ced8ceea33",
+            "name": "Logan Smart",
+            "nickname": "Log",
+            "gender": "1",
+            "attributes": {
+                "strength": "60",
+                "intelligence": "85",
+                "toughness": "72",
+                "agility": "70"
+            }
+        }
+    ]
+}
+
