@@ -14,6 +14,8 @@ namespace WLSXX.Model
         public string Name { get; set; }
         public string Nickname { get; set; }
         public GenderEnum Gender { get; set; }
+        public int Height { get; set; }
+        public int Weight { get; set; }
        
     }
 

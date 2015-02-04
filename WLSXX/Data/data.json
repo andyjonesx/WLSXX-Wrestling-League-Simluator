@@ -9,7 +9,17 @@
                 "strength": "60",
                 "intelligence": "85",
                 "toughness": "72",
-                "agility": "70"
+                "agility": "70",
+                "conditioning": "85",
+                "cheating": "85",
+                "brawling": "85",
+                "technical": "85",
+                "matwrestling": "85",
+                "aerial": "85",
+                "quickness": "85",
+                "teamwork": "85",
+                "heel": "85",
+                "face": "85"
             }
         },
         {
@@ -21,9 +31,52 @@
                 "strength": "60",
                 "intelligence": "85",
                 "toughness": "72",
-                "agility": "70"
+                "agility": "70",
+                "conditioning": "85",
+                "cheating": "85",
+                "brawling": "85",
+                "technical": "85",
+                "matwrestling": "85",
+                "aerial": "85",
+                "quickness": "85",
+                "teamwork": "85",
+                "heel": "85",
+                "face": "85"
             }
+        }
+    ],
+    "moves": [
+        {
+            "id": "92249f51-8872-46ad-b660-15795296c065",
+            "name": "Reverse DDT",
+            "lowerdamage": "15",
+            "upperdamage": "25",
+            "lowerselfdamage": "0",
+            "upperselfdamage": "0",
+            "chance": "70",
+            "canpin": "false",
+            "pinmodifier": "0",
+            "cansubmit": "false",
+            "submitmodifier": "0",
+            "attributes": {
+                "strength": "60",
+                "intelligence": "85",
+                "toughness": "72",
+                "agility": "70",
+                "conditioning": "85",
+                "cheating": "85",
+                "brawling": "85",
+                "technical": "85",
+                "matwrestling": "85",
+                "aerial": "85",
+                "quickness": "85",
+                "teamwork": "85",
+                "heel": "85",
+                "face": "85"
+            },
+            "stunned": "true",
+            "canstun": "false",
+            "assignonly": "true"
         }
     ]
 }
-

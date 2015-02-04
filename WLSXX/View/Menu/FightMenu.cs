@@ -50,7 +50,6 @@ namespace WLSXX.View.Menu
             StatusHelper.SetStartingStatus(singlesMatch.Wrestler1);
             StatusHelper.SetStartingStatus(singlesMatch.Wrestler2);
 
-            Match.Match
         }
     }
 }

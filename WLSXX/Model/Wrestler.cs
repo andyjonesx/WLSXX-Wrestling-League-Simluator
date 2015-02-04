@@ -11,6 +11,7 @@ namespace WLSXX.Model
     public class Wrestler : Person
     {
         public Attributes Attributes { get; set; }
-
+        public List<Move> SignatureMoves { get; set; }
+        public List<Move> FinisherMoves { get; set; }
     }
 }

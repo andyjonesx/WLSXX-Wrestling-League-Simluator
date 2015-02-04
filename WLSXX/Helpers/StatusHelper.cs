@@ -12,9 +12,26 @@ namespace WLSXX.Helpers
         public static void SetStartingStatus(ActiveWrestler activeWrestler)
         {
             activeWrestler.Status = new Status();
-            activeWrestler.Status.Damage = 0;
-            activeWrestler.Status.Morale = 100;
-            activeWrestler.Status.Stamina = 100;
+            activeWrestler.Status.Damage = new StatusElement
+            {
+                Current = 100,
+                Max = 100,
+                Min = 0
+            };
+
+            activeWrestler.Status.Morale = new StatusElement
+            {
+                Current = 100,
+                Max = 100,
+                Min = 0
+            };
+
+            activeWrestler.Status.Stamina = new StatusElement
+            {
+                Current = 100,
+                Max = 100,
+                Min = 0
+            };
         }
     }
 }

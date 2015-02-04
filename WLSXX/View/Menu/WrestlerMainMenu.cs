@@ -121,11 +121,8 @@ namespace WLSXX.View.Menu
                 Console.WriteLine("Gender: Female");
             }
 
-            Console.WriteLine("ATTRIBUTES");
-            Console.WriteLine("Agility: " + wrestler.Attributes.Agility);
-            Console.WriteLine("Intelligence: " + wrestler.Attributes.Intelligence);
-            Console.WriteLine("Strength: " + wrestler.Attributes.Strength);
-            Console.WriteLine("Toughness: " + wrestler.Attributes.Toughness);
+            DisplayHelper.DisplayWrestlerAttributes(wrestler.Attributes);
+
             Console.WriteLine();
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("1. Edit");

@@ -9,5 +9,6 @@ namespace WLSXX.Model
     public class Data
     {
         public List<Wrestler> Wrestlers { get; set; }
+        public List<Move> Moves { get; set; }
     }
 }

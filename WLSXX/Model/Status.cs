@@ -12,7 +12,9 @@ namespace WLSXX.Model
     {
         public StatusElement Damage { get; set; }
         public StatusElement Stamina { get; set; }
-        public StatusElement Morale { get; set; }      
+        public StatusElement Morale { get; set; }
+        public LocationEnum Position { get; set; }
+        public bool Stunned { get; set; }
     }
 
      

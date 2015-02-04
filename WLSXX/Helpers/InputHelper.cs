@@ -72,16 +72,23 @@ namespace WLSXX.Helpers
 
         public static Wrestler SelectWrestlerAll()
         {
+            var options = new Dictionary<int, Wrestler>();
+
             var wrestlers = WrestlerManager.GetWrestlers();
 
             int i = 1;
             foreach (var wrestler in wrestlers)
             {
-                Console.WriteLine(i.ToString() + ". " + wrestler.Name);
+                options.Add(i, wrestler);
                 i++;
             }
 
-            Console.WriteLine(i.ToString() + ". Back");
+            foreach(var option in options)
+            {
+                Console.WriteLine(option.Key.ToString() + ". " + option.Value.Name);
+            }
+
+            Console.WriteLine("0. Back");
 
             var choice = Console.ReadKey();
 
@@ -89,13 +96,13 @@ namespace WLSXX.Helpers
 
             if (int.TryParse(choice.KeyChar.ToString(), out intChoice))
             {
-                if (intChoice == i)
+                if (intChoice == 0)
                 {
                     return null;
                 }
                 else
                 {
-                    return wrestlers.ElementAt(intChoice - 1);
+                    return options[intChoice];
                 }
             }
             else

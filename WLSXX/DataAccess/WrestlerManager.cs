@@ -34,7 +34,7 @@ namespace WLSXX.DataAccess
                 wrestler.ID = Guid.NewGuid();
             }
 
-            var wrestlers = GetWrestlers().ToList();
+            var wrestlers = GetWrestlers();
             wrestlers.Add(wrestler);
             UpdateWresterList(wrestlers);
             return true;
@@ -42,7 +42,7 @@ namespace WLSXX.DataAccess
 
         public static bool RemoveWrestler(Wrestler wrestler)
         {
-            var wrestlers = GetWrestlers().ToList();
+            var wrestlers = GetWrestlers();
             wrestlers.Remove(wrestlers.Where(x => x.ID == wrestler.ID).SingleOrDefault());
 
             UpdateWresterList(wrestlers);
@@ -56,9 +56,9 @@ namespace WLSXX.DataAccess
             return RemoveWrestler(wrestler);
         }
 
-        public static IEnumerable<Wrestler> GetWrestlers()
+        public static List<Wrestler> GetWrestlers()
         {
-            return DataManager.Data.Wrestlers.ToList();
+            return DataManager.Data.Wrestlers;
         }
 
         private static bool UpdateWresterList(List<Wrestler> wrestlers)
