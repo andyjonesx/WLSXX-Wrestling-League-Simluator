@@ -47,9 +47,10 @@
   <ItemGroup>
     <Compile Include="DataAccess\DataManager.cs" />
     <Compile Include="DataAccess\MoveManager.cs" />
+    <Compile Include="DataAccess\PromotionManager.cs" />
     <Compile Include="DataAccess\WrestlerManager.cs" />
     <Compile Include="Helpers\ActionHelper.cs" />
-    <Compile Include="Helpers\CurrentPositionHelper.cs" />
+    <Compile Include="Helpers\CurrentPositionTextHelper.cs" />
     <Compile Include="Helpers\DisplayHelper.cs" />
     <Compile Include="Helpers\InputHelper.cs" />
     <Compile Include="Helpers\StatusHelper.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Model\Attributes.cs" />
     <Compile Include="Model\Data.cs" />
     <Compile Include="Model\Enumerations\GenderEnum.cs" />
+    <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\SinglesMatch.cs" />
     <Compile Include="Model\StatusElement.cs" />
     <Compile Include="Model\Status.cs" />

@@ -13,6 +13,25 @@ namespace WLSXX.View.Menu
 {
     public static class WrestlerMenu
     {
+        private static Promotion _promotion;
+
+        public static void SelectPromotion()
+        {
+            _promotion = null;
+            var promotion = InputHelper.SelectPromotionAll();
+
+            if (promotion == null)
+            {
+                MainMenu.ShowMainMenu();
+            }
+            else
+            {
+                _promotion = promotion;
+                ShowMainMenu();
+            }
+            
+        }
+
         public static void ShowMainMenu()
         {
             DisplayHelper.ClearScreen();
@@ -31,10 +50,10 @@ namespace WLSXX.View.Menu
                     ShowAddWrestler();
                     break;
                 case '3':
-                    MainMenu.ShowMainMenu();
+                    SelectPromotion();
                     break;
                 default:
-                    ShowMainMenu();
+                    SelectPromotion();
                     break;
             }
         }
@@ -60,7 +79,7 @@ namespace WLSXX.View.Menu
             wrestler.Attributes.Intelligence = InputHelper.GetIntRating("Intelligence: ");
             wrestler.Attributes.Toughness = InputHelper.GetIntRating("Toughness: ");
 
-            if (WrestlerManager.AddWrestler(wrestler))
+            if (WrestlerManager.Add(wrestler, _promotion.ID))
             {
                 ShowViewWrestlers();
             }
@@ -93,7 +112,7 @@ namespace WLSXX.View.Menu
             DisplayHelper.ClearScreen();
             Console.WriteLine("SHOW WRESTLERS");
 
-            var wrestler = InputHelper.SelectWrestlerAll();
+            var wrestler = InputHelper.SelectWrestlerAll(_promotion.ID);
 
             if (wrestler != null)
             {
@@ -150,7 +169,7 @@ namespace WLSXX.View.Menu
 
         public static void ShowDeleteWrestler(Guid wrestlerId)
         {
-            var wrestler = WrestlerManager.GetWrestlerByID(wrestlerId);
+            var wrestler = WrestlerManager.Get(wrestlerId, _promotion.ID);
 
             DisplayHelper.ClearScreen();
             Console.WriteLine("DELETE WRESTER");
@@ -161,7 +180,7 @@ namespace WLSXX.View.Menu
             switch (choice.KeyChar)
             {
                 case 'y':
-                    WrestlerManager.RemoveWrestler(wrestlerId);
+                    WrestlerManager.Remove(wrestlerId, _promotion.ID);
                     ShowViewWrestlers();
                     break;
                 case 'n':
@@ -175,7 +194,7 @@ namespace WLSXX.View.Menu
     
         public static void ShowEditWrestler(Guid wrestlerId)
         {
-            var wrestler = WrestlerManager.GetWrestlerByID(wrestlerId);
+            var wrestler = WrestlerManager.Get(wrestlerId, _promotion.ID);
 
             DisplayHelper.ClearScreen();
             Console.WriteLine("WRESTLER DETAILS");
@@ -205,43 +224,43 @@ namespace WLSXX.View.Menu
             {
                 case '1':
                     wrestler.Name = InputHelper.GetString("New name: ");
-                    WrestlerManager.UpdateWrestler(wrestler);
+                    WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
                 case '2':
                     wrestler.Name = InputHelper.GetString("New nickname: ");
-                    WrestlerManager.UpdateWrestler(wrestler);
+                    WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
                 case '3':
                     wrestler.Gender = InputHelper.GetGender("New gender (M/F): ");
-                    WrestlerManager.UpdateWrestler(wrestler);
+                    WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
                 case '4':
                     wrestler.Attributes.Agility = InputHelper.GetIntRating("Agility: ");
-                    WrestlerManager.UpdateWrestler(wrestler);
+                    WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
                 case '5':
                     wrestler.Attributes.Intelligence = InputHelper.GetIntRating("Intelligence: ");
-                    WrestlerManager.UpdateWrestler(wrestler);
+                    WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
                 case '6':
                     wrestler.Attributes.Strength = InputHelper.GetIntRating("Strength: ");
-                    WrestlerManager.UpdateWrestler(wrestler);
+                    WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
                 case '7':
                     wrestler.Attributes.Toughness = InputHelper.GetIntRating("Toughness: ");
-                    WrestlerManager.UpdateWrestler(wrestler);
+                    WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 

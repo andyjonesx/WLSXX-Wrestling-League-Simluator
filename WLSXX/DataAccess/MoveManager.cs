@@ -10,23 +10,32 @@ namespace WLSXX.DataAccess
 {
     public static class MoveManager
     {
-        public static Move GetMoveByID(Guid moveId)
+        public static Move GetMoveByID(Guid moveId, Guid promotionId)
         {
-            return DataManager.Data.Moves.Where(w => w.ID == moveId).SingleOrDefault();
+            var promotion = DataManager.Data.Promotions.Where(p => p.ID == promotionId).SingleOrDefault();
+            if (promotion != null)
+            {
+                return promotion.Moves.Where(w => w.ID == moveId).SingleOrDefault();    
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
-        public static List<Move> GetMovesByPosition(LocationEnum currentLocation, LocationEnum opponentLocation)
+        public static List<Move> GetMovesByPosition(LocationEnum currentLocation, LocationEnum opponentLocation, Guid promotionId)
         {
-            var moves = GetMoves().Where(m => m.WrestlerLocation == currentLocation && m.OpponentLocation == opponentLocation && m.AssignOnly == false).ToList();
+            var moves = GetMoves(promotionId).Where(m => m.WrestlerLocation == currentLocation && m.OpponentLocation == opponentLocation && m.AssignOnly == false).ToList();
 
             return moves;
         }
 
-        public static bool MoveWrestler(Move move)
+        public static bool UpdateMove(Move move, Guid promotionId)
         {
-            if (RemoveMove(move.ID))
+            if (RemoveMove(move.ID, promotionId))
             {
-                return AddMove(move);    
+                return AddMove(move, promotionId);    
             }
             else
             {
@@ -34,43 +43,45 @@ namespace WLSXX.DataAccess
             }
         }
 
-        public static bool AddMove(Move move)
+        public static bool AddMove(Move move, Guid promotionId)
         {
             if (move.ID == null || move.ID == Guid.Empty)
             {
                 move.ID = Guid.NewGuid();
             }
 
-            var moves = GetMoves();
+            var moves = GetMoves(promotionId);
             moves.Add(move);
-            UpdateMoveList(moves);
+            UpdateMoveList(moves, promotionId);
             return true;
         }
 
-        public static bool RemoveMove(Move move)
+        public static bool RemoveMove(Move move, Guid promotionId)
         {
-            var moves = GetMoves();
+            var moves = GetMoves(promotionId);
             moves.Remove(moves.Where(x => x.ID == move.ID).SingleOrDefault());
 
-            UpdateMoveList(moves);
+            UpdateMoveList(moves, promotionId);
 
             return true;
         }
 
-        public static bool RemoveMove(Guid moveId)
+        public static bool RemoveMove(Guid moveId, Guid promotionId)
         {
-            var move = GetMoveByID(moveId);
-            return RemoveMove(move);
+            var move = GetMoveByID(moveId, promotionId);
+            return RemoveMove(move, promotionId);
         }
 
-        public static List<Move> GetMoves()
+        public static List<Move> GetMoves(Guid promotionId)
         {
-            return DataManager.Data.Moves;
+            var promotion = DataManager.Data.Promotions.Where(p => p.ID == promotionId).SingleOrDefault();
+            return promotion.Moves;
         }
 
-        private static bool UpdateMoveList(List<Move> moves)
+        private static bool UpdateMoveList(List<Move> moves, Guid promotionId)
         {
-            DataManager.Data.Moves = moves;
+            var promotion = DataManager.Data.Promotions.Where(p => p.ID == promotionId).SingleOrDefault();
+            promotion.Moves = moves;
 
             DataManager.UpdateData();
 

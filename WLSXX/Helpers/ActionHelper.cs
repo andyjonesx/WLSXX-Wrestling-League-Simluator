@@ -10,14 +10,50 @@ namespace WLSXX.Helpers
 {
     public static class ActionHelper
     {
-        public static Move DecideAvailableActions(ActiveWrestler currentWrestler, ActiveWrestler opponent)
+        public static Move DecideAction(ActiveWrestler currentWrestler, ActiveWrestler opponent, Guid promotionId)
         {
-            return GetPossibleActions(currentWrestler, opponent)[0];
+            var actions = GetPossibleActions(currentWrestler, opponent, promotionId);
+
+            var options = new Dictionary<int, Move>();
+
+            int i = 1;
+            foreach (var move in actions)
+            {
+                options.Add(i, move);
+                i++;
+            }
+
+            foreach (var option in options)
+            {
+                Console.WriteLine(option.Key.ToString() + ". " + option.Value.Name);
+            }
+
+            var choice = Console.ReadKey();
+
+            int intChoice = -1;
+
+            if (int.TryParse(choice.KeyChar.ToString(), out intChoice))
+            {
+                if (intChoice == 0)
+                {
+                    return null;
+                }
+                else
+                {  
+                    return options[intChoice];
+                }
+            }
+            else
+            {
+                DecideAction(currentWrestler, opponent, promotionId);
+            }
+
+            return null;
         }
 
-        public static List<Move> GetPossibleActions(ActiveWrestler currentWrestler, ActiveWrestler opponent)
+        private static List<Move> GetPossibleActions(ActiveWrestler currentWrestler, ActiveWrestler opponent, Guid promotionId)
         {
-            var possibleMoves = MoveManager.GetMovesByPosition(currentWrestler.Status.Position, opponent.Status.Position);
+            var possibleMoves = MoveManager.GetMovesByPosition(currentWrestler.Status.Position, opponent.Status.Position, promotionId);
 
             return possibleMoves;
             

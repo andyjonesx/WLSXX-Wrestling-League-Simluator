@@ -70,11 +70,55 @@ namespace WLSXX.Helpers
             }
         }
 
-        public static Wrestler SelectWrestlerAll()
+        public static Promotion SelectPromotionAll()
+        {
+            DisplayHelper.ClearScreen();
+
+            var options = new Dictionary<int, Promotion>();
+            var promotions = PromotionManager.GetList();
+            int i = 1;
+            foreach (var promotion in promotions)
+            {
+                options.Add(i, promotion);
+                i++;
+            }
+
+            Console.WriteLine("Select Promotion");
+            foreach (var option in options)
+            {
+                Console.WriteLine(option.Key.ToString() + ". " + option.Value.Name);
+            }
+
+            Console.WriteLine("0. Back");
+
+            var choice = Console.ReadKey();
+
+            int intChoice = -1;
+
+            if (int.TryParse(choice.KeyChar.ToString(), out intChoice))
+            {
+                if (intChoice == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    return options[intChoice];
+                }
+            }
+            else
+            {
+                SelectPromotionAll();
+            }
+
+            return null;
+        }
+
+        public static Wrestler SelectWrestlerAll(Guid promotionId)
         {
             var options = new Dictionary<int, Wrestler>();
 
-            var wrestlers = WrestlerManager.GetWrestlers();
+            var wrestlers = WrestlerManager.GetList(promotionId);
 
             int i = 1;
             foreach (var wrestler in wrestlers)
@@ -107,7 +151,7 @@ namespace WLSXX.Helpers
             }
             else
             {
-                SelectWrestlerAll();
+                SelectWrestlerAll(promotionId);
             }
 
             return null;

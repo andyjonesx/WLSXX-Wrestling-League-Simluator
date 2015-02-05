@@ -23,10 +23,10 @@ namespace WLSXX.View.Menu
             switch (choice.KeyChar)
             {
                 case '1':
-                    View.Menu.WrestlerMenu.ShowMainMenu();
+                    View.Menu.WrestlerMenu.SelectPromotion();
                     break;
                 case '2':
-                    View.Menu.FightMenu.ShowMainMenu();
+                    View.Menu.FightMenu.SelectPromotion();
                     break;
                 case '3':
                     ShowExitMenu();

@@ -12,7 +12,7 @@ namespace WLSXX.Model
     {
         public ActiveWrestler Wrestler1 { get; set; }
         public ActiveWrestler Wrestler2 { get; set; }
-
+        public Guid PromotionId { get; set; }
         public bool MatchOver { get; set; }
 
     }

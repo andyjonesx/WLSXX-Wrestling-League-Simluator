@@ -9,16 +9,25 @@ namespace WLSXX.DataAccess
 {
     public static class WrestlerManager
     {
-        public static Wrestler GetWrestlerByID(Guid wrestlerId)
+        public static Wrestler Get(Guid wrestlerId, Guid promotionId)
         {
-            return DataManager.Data.Wrestlers.Where(w => w.ID == wrestlerId).SingleOrDefault();
+            var promotion = DataManager.Data.Promotions.Where(p => p.ID == promotionId).SingleOrDefault();
+            
+            if (promotion != null)
+            {
+                return promotion.Wrestlers.Where(w => w.ID == wrestlerId).SingleOrDefault();
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public static bool UpdateWrestler(Wrestler wrestler)
+        public static bool Update(Wrestler wrestler, Guid promotionId)
         {
-            if (RemoveWrestler(wrestler.ID))
+            if (Remove(wrestler.ID, promotionId))
             {
-                return AddWrestler(wrestler);    
+                return Add(wrestler, promotionId);    
             }
             else
             {
@@ -27,47 +36,66 @@ namespace WLSXX.DataAccess
             
         }
 
-        public static bool AddWrestler(Wrestler wrestler)
+        public static bool Add(Wrestler wrestler, Guid promotionId)
         {
             if (wrestler.ID == null || wrestler.ID == Guid.Empty)
             {
                 wrestler.ID = Guid.NewGuid();
             }
 
-            var wrestlers = GetWrestlers();
+            var wrestlers = GetList(promotionId);
             wrestlers.Add(wrestler);
-            UpdateWresterList(wrestlers);
+            UpdateDataList(wrestlers, promotionId);
             return true;
         }
 
-        public static bool RemoveWrestler(Wrestler wrestler)
+        public static bool Remove(Wrestler wrestler, Guid promotionId)
         {
-            var wrestlers = GetWrestlers();
+            var wrestlers = GetList(promotionId);
             wrestlers.Remove(wrestlers.Where(x => x.ID == wrestler.ID).SingleOrDefault());
 
-            UpdateWresterList(wrestlers);
+            UpdateDataList(wrestlers, promotionId);
 
             return true;
         }
 
-        public static bool RemoveWrestler(Guid wrestlerId)
+        public static bool Remove(Guid wrestlerId, Guid promotionId)
         {
-            var wrestler = GetWrestlerByID(wrestlerId);
-            return RemoveWrestler(wrestler);
+            var wrestler = Get(wrestlerId, promotionId);
+            return Remove(wrestler, promotionId);
         }
 
-        public static List<Wrestler> GetWrestlers()
+        public static List<Wrestler> GetList(Guid promotionId)
         {
-            return DataManager.Data.Wrestlers;
+            var promotion = DataManager.Data.Promotions.Where(p => p.ID == promotionId).SingleOrDefault();
+
+            if (promotion != null)
+            {
+                return promotion.Wrestlers;    
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
-        private static bool UpdateWresterList(List<Wrestler> wrestlers)
+        private static bool UpdateDataList(List<Wrestler> wrestlers, Guid promotionId)
         {
-            DataManager.Data.Wrestlers = wrestlers;
+            var promotion = DataManager.Data.Promotions.Where(p => p.ID == promotionId).SingleOrDefault();
 
-            DataManager.UpdateData();
+            if (promotion != null)
+            { 
+                promotion.Wrestlers = wrestlers;
 
-            return true;
+                DataManager.UpdateData();
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

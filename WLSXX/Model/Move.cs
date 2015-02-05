@@ -17,12 +17,16 @@ namespace WLSXX.Model
         public int UpperSelfDamage { get; set; }
         public int Chance { get; set; }
         public bool CanPin { get; set; }
-        public bool PinModifier { get; set; }
+        public int PinModifier { get; set; }
         public bool CanSubmit { get; set; }
-        public bool SubmitModifier { get; set; }
+        public int SubmitModifier { get; set; }
         public Attributes RecommendedAttributes { get; set; }
         public LocationEnum WrestlerLocation { get; set; }
         public LocationEnum OpponentLocation { get; set; }
+        public LocationEnum WrestlerNewLocation { get; set; }
+        public int WrestlerNewLocationChance { get; set; }
+        public LocationEnum OpponentNewLocation { get; set; }
+        public int OpponentNewLocationChance { get; set; }
         public bool Stunned { get; set; }
         public bool CanStun { get; set; }
         public bool AssignOnly { get; set; }

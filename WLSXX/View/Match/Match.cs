@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WLSXX.Model;
+using WLSXX.Helpers;
 
 namespace WLSXX.View.Match
 {
@@ -24,15 +25,23 @@ namespace WLSXX.View.Match
 
         public static void TakeTurn(SinglesMatch singlesMatch)
         {
+            Move wrestler1Move = null;
+            Move wrestler2Move = null;
+
             if (singlesMatch.Wrestler1.HumanControlled)
             {
-                ShowActions(singlesMatch.Wrestler1, singlesMatch.Wrestler2);
+                wrestler1Move = ActionHelper.DecideAction(singlesMatch.Wrestler1, singlesMatch.Wrestler2, singlesMatch.PromotionId);
             }
+            if (singlesMatch.Wrestler1.HumanControlled)
+            {
+                wrestler2Move = ActionHelper.DecideAction(singlesMatch.Wrestler1, singlesMatch.Wrestler2, singlesMatch.PromotionId);
+            }
+
         }
 
         public static void ShowActions(ActiveWrestler currentWrestler, ActiveWrestler opponent)
         {
-            
+
         }
     }
 }
