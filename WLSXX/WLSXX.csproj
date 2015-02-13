@@ -55,6 +55,7 @@
     <Compile Include="Helpers\InputHelper.cs" />
     <Compile Include="Helpers\StatusHelper.cs" />
     <Compile Include="Model\Enumerations\LocationEnum.cs" />
+    <Compile Include="Model\MatchRound.cs" />
     <Compile Include="Model\Move.cs" />
     <Compile Include="Model\Attributes.cs" />
     <Compile Include="Model\Data.cs" />

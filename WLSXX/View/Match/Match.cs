@@ -25,23 +25,28 @@ namespace WLSXX.View.Match
 
         public static void TakeTurn(SinglesMatch singlesMatch)
         {
-            Move wrestler1Move = null;
-            Move wrestler2Move = null;
+            singlesMatch.CurrentRound = new MatchRound();
+            singlesMatch.CurrentRound.RoundNumber = singlesMatch.CurrentRoundNumber + 1;
 
             if (singlesMatch.Wrestler1.HumanControlled)
             {
-                wrestler1Move = ActionHelper.DecideAction(singlesMatch.Wrestler1, singlesMatch.Wrestler2, singlesMatch.PromotionId);
+                singlesMatch.CurrentRound.Wrestler1Move = ActionHelper.DecideAction(singlesMatch.Wrestler1, singlesMatch.Wrestler2, singlesMatch.PromotionId);
             }
+
             if (singlesMatch.Wrestler1.HumanControlled)
             {
-                wrestler2Move = ActionHelper.DecideAction(singlesMatch.Wrestler1, singlesMatch.Wrestler2, singlesMatch.PromotionId);
+                singlesMatch.CurrentRound.Wrestler2Move = ActionHelper.DecideAction(singlesMatch.Wrestler1, singlesMatch.Wrestler2, singlesMatch.PromotionId);
             }
 
+            singlesMatch.CurrentRound.SuccessfulWrestler = ActionHelper.DecideSuccessfulMove(singlesMatch.CurrentRound, singlesMatch.Wrestler1, singlesMatch.Wrestler2);
+
+            singlesMatch.CurrentRound = ActionHelper.CalculateActionEffects(singlesMatch.CurrentRound, singlesMatch.Wrestler1, singlesMatch.Wrestler2);
+
+            if (singlesMatch.CurrentRound.PinSuccessful || singlesMatch.CurrentRound.SubmissionSuccessful)
+            {
+                singlesMatch.MatchOver = true;
+            }
         }
 
-        public static void ShowActions(ActiveWrestler currentWrestler, ActiveWrestler opponent)
-        {
-
-        }
     }
 }

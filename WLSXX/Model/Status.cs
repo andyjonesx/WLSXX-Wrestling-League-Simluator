@@ -15,6 +15,7 @@ namespace WLSXX.Model
         public StatusElement Morale { get; set; }
         public LocationEnum Position { get; set; }
         public bool Stunned { get; set; }
+        public bool Cut { get; set; }
     }
 
      
