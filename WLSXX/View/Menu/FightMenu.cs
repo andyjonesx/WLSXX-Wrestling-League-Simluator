@@ -37,18 +37,18 @@ namespace WLSXX.View.Menu
             Console.WriteLine("1. Singles Wrestling Match");
             Console.WriteLine("2. Back");
 
-            var choice = Console.ReadKey();
+            var choice = InputHelper.GetIntCharacter(1, 2);
 
-            switch (choice.KeyChar)
+            switch (choice)
             {
-                case '1':
+                case 1:
                     ShowSelectWrestlers();
                     break;
-                case '2':
+                case 2:
                     SelectPromotion();
                     break;
                 default:
-                    SelectPromotion();
+                    ShowMainMenu();
                     break;
             }
         }

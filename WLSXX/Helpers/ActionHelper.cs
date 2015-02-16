@@ -28,27 +28,9 @@ namespace WLSXX.Helpers
                 Console.WriteLine(option.Key.ToString() + ". " + option.Value.Name);
             }
 
-            var choice = Console.ReadKey();
+            var choice = InputHelper.GetIntCharacter(1, options.Count);
 
-            int intChoice = -1;
-
-            if (int.TryParse(choice.KeyChar.ToString(), out intChoice))
-            {
-                if (intChoice == 0)
-                {
-                    return null;
-                }
-                else
-                {  
-                    return options[intChoice];
-                }
-            }
-            else
-            {
-                return DecideAction(currentWrestler, opponent, promotionId);
-            }
-
-            return null;
+            return options[choice];
         }
 
         private static List<Move> GetPossibleActions(ActiveWrestler currentWrestler, ActiveWrestler opponent, Guid promotionId)
@@ -110,49 +92,61 @@ namespace WLSXX.Helpers
 
         public static int DecideSuccessfulMove(MatchRound currentRound, ActiveWrestler wrestler1, ActiveWrestler wrestler2)
         {
+            int wrestler1Base = CalculationHelper.CalculateUpperChanceOfMoveHappening(wrestler1, currentRound.Wrestler1Move);
+            int wrestler2Base = CalculationHelper.CalculateUpperChanceOfMoveHappening(wrestler2, currentRound.Wrestler2Move);
+
             //todo weigh up statistics of each wrester, and risk of the move, and return which wrestler performed their move
             return 1;
         }
 
         private static bool CheckMoveSuccess(ActiveWrestler attackingWrestler, ActiveWrestler defendingWrestler, Move move)
         {
+            var attackingWrestlerBase = CalculationHelper.CalculateUpperChanceOfMoveSuccess(attackingWrestler, move);
+            var defendingWrestlerBase = CalculationHelper.CalculateUpperChanceOfMoveDefend(defendingWrestler, move);
             //todo check if move worked
             return true;
         }
 
         private static void ApplyDamage(ref ActiveWrestler attackingWrestler, ref ActiveWrestler defendingWrestler, Move move)
         {
-            //todo apply damage
+            defendingWrestler.Status.Damage = CalculationHelper.CalculateDamage(attackingWrestler, defendingWrestler, move); 
+            attackingWrestler.Status.Damage = CalculationHelper.CalculateSelfDamage(attackingWrestler, move);
         }
 
         private static bool CheckApplyStun(ActiveWrestler attackingWrestler, ActiveWrestler defendingWrestler, Move move)
         {
             //todo check apply stun
+            return false;
         }
 
         private static bool ApplyStun(ActiveWrestler attackingWrestler, ActiveWrestler defendingWrestler, Move move)
         {
             //todo apply stun
+            return false;
         }
 
         private static bool CheckApplySubmission(ActiveWrestler attackingWrestler, ActiveWrestler defendingWrestler, Move move)
         {
             //todo apply submission
+            return false;
         }
 
         private static bool ApplySubmission(ActiveWrestler attackingWrestler, ActiveWrestler defendingWrestler, Move move)
         {
             //todo apply submission
+            return false;
         }
 
         private static bool CheckApplyPin(ActiveWrestler attackingWrestler, ActiveWrestler defendingWrestler, Move move)
         {
             //todo apply pin
+            return false;
         }
 
         private static bool ApplyPin(ActiveWrestler attackingWrestler, ActiveWrestler defendingWrestler, Move move)
         {
             //todo apply pin
+            return false;
         }
     }
 }

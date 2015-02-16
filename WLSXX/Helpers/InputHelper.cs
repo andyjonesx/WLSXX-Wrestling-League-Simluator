@@ -14,26 +14,90 @@ namespace WLSXX.Helpers
         public const int MAX_ATTRIBUTE = 100;
         public const int MIN_ATTRIBUTE = 0;
 
-        public static string GetString(string text)
+        public static string GetString(string text = null)
         {
             var input = "";
             do
             {
-                Console.Write(text);
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    Console.Write(text);
+                }
                 input = Console.ReadLine();
             } while (string.IsNullOrWhiteSpace(input));
 
             return input;
         }
 
-        public static int GetIntRating(string text)
+        public static string GetCharacter(string text = null)
+        {
+            var inputStr = "";
+
+            while (inputStr.Length != 1)
+            {
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    Console.Write(text);
+                }
+                inputStr = Console.ReadLine();
+            }
+
+            return inputStr;
+        }
+
+        public static int GetIntCharacter(string text = null)
+        {
+            var inputStr = "x";
+            int inputInt = -1;
+
+            while (!int.TryParse(inputStr, out inputInt) || (int.TryParse(inputStr, out inputInt)))
+            {
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    Console.Write(text);
+                }
+                inputStr = Console.ReadLine();
+            }
+
+            return inputInt;
+        }
+
+        public static int GetIntCharacter(int min, int max, string text = null)
+        {
+            var inputStr = "-1";
+            int inputInt = -1;
+
+            while (!int.TryParse(inputStr, out inputInt) || (int.TryParse(inputStr, out inputInt) && (int.Parse(inputStr) < min || int.Parse(inputStr) > max)))
+            {
+                if (inputInt != -1)
+                { 
+                    DisplayHelper.ClearLastConsoleLine();
+                }
+
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    Console.Write(text);    
+                }
+
+                inputStr = Console.ReadLine();
+            }
+
+            int.TryParse(inputStr, out inputInt);
+
+            return inputInt;
+        }
+
+        public static int GetIntRating(string text = null)
         {
             var inputStr = "x";
             int inputInt = -1;
 
             while (!int.TryParse(inputStr, out inputInt) || (int.TryParse(inputStr, out inputInt) && (int.Parse(inputStr) < MIN_ATTRIBUTE || int.Parse(inputStr) > MAX_ATTRIBUTE)))
             {
-                Console.Write(text);
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    Console.Write(text);
+                }
                 inputStr = Console.ReadLine();
             }
 
@@ -52,7 +116,10 @@ namespace WLSXX.Helpers
             var gender = 'x';
             do
             {
-                Console.Write(text);
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    Console.Write(text);
+                }
                 gender = Console.ReadKey().KeyChar;
             } while (gender != 'f' && gender != 'm');
 
@@ -91,27 +158,16 @@ namespace WLSXX.Helpers
 
             Console.WriteLine("0. Back");
 
-            var choice = Console.ReadKey();
+            var choice = InputHelper.GetIntCharacter(0, options.Count);
 
-            int intChoice = -1;
-
-            if (int.TryParse(choice.KeyChar.ToString(), out intChoice))
+            if (choice == 0)
             {
-                if (intChoice == 0)
-                {
-                    return null;
-                }
-                else
-                {
-                    return options[intChoice];
-                }
+                return null;
             }
             else
             {
-                SelectPromotionAll();
+                return options[choice];
             }
-
-            return null;
         }
 
         public static Wrestler SelectWrestlerAll(Guid promotionId)
@@ -134,27 +190,16 @@ namespace WLSXX.Helpers
 
             Console.WriteLine("0. Back");
 
-            var choice = Console.ReadKey();
+            var choice = InputHelper.GetIntCharacter(0, options.Count);
 
-            int intChoice = -1;
-
-            if (int.TryParse(choice.KeyChar.ToString(), out intChoice))
+            if (choice == 0)
             {
-                if (intChoice == 0)
-                {
-                    return null;
-                }
-                else
-                {
-                    return options[intChoice];
-                }
+                return null;
             }
             else
             {
-                SelectWrestlerAll(promotionId);
+                return options[choice];
             }
-
-            return null;
         }
     }
 }

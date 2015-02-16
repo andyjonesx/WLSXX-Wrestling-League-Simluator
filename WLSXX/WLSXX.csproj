@@ -50,6 +50,7 @@
     <Compile Include="DataAccess\PromotionManager.cs" />
     <Compile Include="DataAccess\WrestlerManager.cs" />
     <Compile Include="Helpers\ActionHelper.cs" />
+    <Compile Include="Helpers\CalculationHelper.cs" />
     <Compile Include="Helpers\CurrentPositionTextHelper.cs" />
     <Compile Include="Helpers\DisplayHelper.cs" />
     <Compile Include="Helpers\InputHelper.cs" />

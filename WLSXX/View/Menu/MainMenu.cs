@@ -18,17 +18,17 @@ namespace WLSXX.View.Menu
             Console.WriteLine("2. Fight"); 
             Console.WriteLine("3. Exit");
 
-            var choice = Console.ReadKey();
+            var choice = InputHelper.GetIntCharacter(1, 3);
 
-            switch (choice.KeyChar)
+            switch (choice)
             {
-                case '1':
+                case 1:
                     View.Menu.WrestlerMenu.SelectPromotion();
                     break;
-                case '2':
+                case 2:
                     View.Menu.FightMenu.SelectPromotion();
                     break;
-                case '3':
+                case 3:
                     ShowExitMenu();
                     break;
                 default:

@@ -39,21 +39,21 @@ namespace WLSXX.View.Menu
             Console.WriteLine("1. View Wrestlers");
             Console.WriteLine("2. Add Wrestler");
             Console.WriteLine("3. Back");
-            var choice = Console.ReadKey();
+            var choice = InputHelper.GetIntCharacter(1, 3);
 
-            switch (choice.KeyChar)
+            switch (choice)
             {
-                case '1':
+                case 1:
                     ShowViewWrestlers();
                     break;
-                case '2':
+                case 2:
                     ShowAddWrestler();
                     break;
-                case '3':
+                case 3:
                     SelectPromotion();
                     break;
                 default:
-                    SelectPromotion();
+                    ShowMainMenu();
                     break;
             }
         }
@@ -89,14 +89,14 @@ namespace WLSXX.View.Menu
                 Console.WriteLine("1. Try again");
                 Console.WriteLine("2. Go back to wrestlers list");
 
-                var choice = Console.ReadKey();
+                var choice = InputHelper.GetIntCharacter(1, 2);
 
-                switch (choice.KeyChar)
+                switch (choice)
                 {
-                    case '1':
+                    case 1:
                         ShowViewWrestlers();
                         break;
-                    case '2':
+                    case 2:
                         ShowAddWrestler();
                         break;
                     default:
@@ -148,17 +148,17 @@ namespace WLSXX.View.Menu
             Console.WriteLine("2. Delete");
             Console.WriteLine("3. Back");
 
-            var choice = Console.ReadKey();
+            var choice = InputHelper.GetIntCharacter(1, 3);
 
-            switch (choice.KeyChar)
+            switch (choice)
             {
-                case '1':
+                case 1:
                     ShowEditWrestler(wrestler.ID);
                     break;
-                case '2':
+                case 2:
                     ShowDeleteWrestler(wrestler.ID);
                     break;
-                case '3':
+                case 3:
                     ShowViewWrestlers();
                     break;
                 default:
@@ -218,53 +218,53 @@ namespace WLSXX.View.Menu
             Console.WriteLine();
             Console.WriteLine("8. Back");
 
-            var choice = Console.ReadKey();
+            var choice = InputHelper.GetIntCharacter(1, 8);
 
-            switch (choice.KeyChar)
+            switch (choice)
             {
-                case '1':
+                case 1:
                     wrestler.Name = InputHelper.GetString("New name: ");
                     WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
-                case '2':
+                case 2:
                     wrestler.Name = InputHelper.GetString("New nickname: ");
                     WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
-                case '3':
+                case 3:
                     wrestler.Gender = InputHelper.GetGender("New gender (M/F): ");
                     WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
-                case '4':
+                case 4:
                     wrestler.Attributes.Agility = InputHelper.GetIntRating("Agility: ");
                     WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
-                case '5':
+                case 5:
                     wrestler.Attributes.Intelligence = InputHelper.GetIntRating("Intelligence: ");
                     WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
-                case '6':
+                case 6:
                     wrestler.Attributes.Strength = InputHelper.GetIntRating("Strength: ");
                     WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
-                case '7':
+                case 7:
                     wrestler.Attributes.Toughness = InputHelper.GetIntRating("Toughness: ");
                     WrestlerManager.Update(wrestler, _promotion.ID);
                     ShowEditWrestler(wrestlerId);
                     break;
 
-                case '8':
+                case 8:
                     ShowViewWrestlers();
                     break;
 
