@@ -1,4 +1,11 @@
 # WLSXX Wrestling League Simulator
+
+Since it's nearly impossible to find this game now, I've added one to this project. I've looked all over the internet for a version that contains all of the WWF wrestlers from that time. There was one, but it seems to have not survived time. If by chance you still have the wrestlers file for this, please, please get in touch (andyjonesx@gmail.com).
+
+The two files are wls53.zip (original, no wrestlers, belts, etc), and "wls53-ihwa.zip" which is a file put online by a group that disbanded in 2004. It contains a number of wrestlers which will allow you to jump right in and play.
+
+
+# This Project
 This is a clone of WLS Wrestling League Simulator by Jamie Winquist released in 1995. 
 
 20 years later and it's still a really fun game, except it doesn't work on Windows 8, and will work less and less as computers move on.
