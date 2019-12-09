@@ -14,10 +14,17 @@ I'm embarking on a quest to clone the game as best as I can, adding a few new fe
 
 For now it is called WLSXX, celebrating the 20th year of the last version WLS.
 
+## An update
+
+Life took over trying to do this (including twin daughters shortly after starting, and a couple of start ups). I have it as a personal challenge to one day recreate this in a different way (though by then I expect nobody at all will care). The scope would now be an online, API-based game where you can create your own league, and if you want, pitch your wrestlers against others online (including cross-league). I'd also try to make it completely open for people to make many changes and save their own "configs" including default moves, chances of them happening, damage, etc... because that means it can potentially always be evolving.
+
+For now though, my next at least 3 years are locked up...
 
 
 
-Analysis of WLS
+
+
+## Analysis of WLS
 
 Notes: To navigate you press a button and press enter.
 
