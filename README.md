@@ -1,11 +1,25 @@
+# Original WLS Downloads
+
+There is a file called "Original Downloads". Since it's enarly impossible to find this game online now I've added this to the project. 
+
+I had looked all over the internet for a version that contains all of the WWF wrestlers from the 90s. There was one, but it seems to have not survived time. Yesterday somebody sent this over to me - so huge, huge shoutout to Eric W. I haven't had chance to check the files yet, but at a glance (and the memory 20 years ago of a 12 year old) it looks right.
+
+It also contains a version which contains the "IHWA" wresters, from an online wrestling league (thanks Neil K).
+
+I can keep growing this list if people have other versions, especially those with wrestling/league/belt sets for once-popular communites. If you have any to share please email me (andyjonesx@gmail.com).
+
+
+- wls54.zip : Clean, most recent version (seems like 6.0 was never launched). This contains no wrestlers, leagues, or belts.
+- wls54-ihwa.zip : Most recent version, containing wrestlers from the "IHWA" simulation league.
+- wls51andupdate-verA.zip : Not yet tested, but contains WWF and WCW
+- wls53-verA.zip : Not yet tested, but looks to contain wrestlers from WWF 90s, and ECW
+
+
+If you're looking to play, check out "DOSBox".
+
+
 # WLSXX Wrestling League Simulator
 
-Since it's nearly impossible to find this game now, I've added one to this project. I've looked all over the internet for a version that contains all of the WWF wrestlers from that time. There was one, but it seems to have not survived time. If by chance you still have the wrestlers file for this, please, please get in touch (andyjonesx@gmail.com).
-
-The two files are wls53.zip (original, no wrestlers, belts, etc), and "wls53-ihwa.zip" which is a file put online by a group that disbanded in 2004. It contains a number of wrestlers which will allow you to jump right in and play.
-
-
-# This Project
 This is a clone of WLS Wrestling League Simulator by Jamie Winquist released in 1995. 
 
 20 years later and it's still a really fun game, except it doesn't work on Windows 8, and will work less and less as computers move on.
